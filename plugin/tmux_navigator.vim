@@ -70,12 +70,12 @@ function! s:TmuxAwareNavigate(direction)
     if g:tmux_navigator_save_on_switch == 1
       try
         update " save the active buffer. See :help update
-      catch /^Vim\%((\a\+)\)\=:E32/ " catches the no file name error 
+      catch /^Vim\%((\a\+)\)\=:E32/ " catches the no file name error
       endtry
     elseif g:tmux_navigator_save_on_switch == 2
       try
         wall " save all the buffers. See :help wall
-      catch /^Vim\%((\a\+)\)\=:E141/ " catches the no file name error 
+      catch /^Vim\%((\a\+)\)\=:E141/ " catches the no file name error
       endtry
     endif
     let args = 'select-pane -t ' . shellescape($TMUX_PANE) . ' -' . tr(a:direction, 'phjkl', 'lLDUR')
@@ -104,9 +104,9 @@ command! TmuxNavigateRight call s:TmuxWinCmd('l')
 command! TmuxNavigatePrevious call s:TmuxWinCmd('p')
 
 if s:UseTmuxNavigatorMappings()
-  nnoremap <silent> <c-h> :TmuxNavigateLeft<cr>
-  nnoremap <silent> <c-j> :TmuxNavigateDown<cr>
-  nnoremap <silent> <c-k> :TmuxNavigateUp<cr>
-  nnoremap <silent> <c-l> :TmuxNavigateRight<cr>
-  nnoremap <silent> <c-\> :TmuxNavigatePrevious<cr>
+  nnoremap <silent> <a-h> :TmuxNavigateLeft<cr>
+  nnoremap <silent> <a-j> :TmuxNavigateDown<cr>
+  nnoremap <silent> <a-k> :TmuxNavigateUp<cr>
+  nnoremap <silent> <a-l> :TmuxNavigateRight<cr>
+  nnoremap <silent> <a-p> :TmuxNavigatePrevious<cr>
 endif
